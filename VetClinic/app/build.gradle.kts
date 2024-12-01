@@ -5,12 +5,13 @@ plugins {
 
 android {
     namespace = "ru.marinalyamina.vetclinic"
-    compileSdk = 34
+    compileSdk = 35
+
 
     defaultConfig {
         applicationId = "ru.marinalyamina.vetclinic"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
@@ -26,6 +27,11 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

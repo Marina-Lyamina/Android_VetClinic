@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">VetClinic</string>
+    <string name="menu_title_home">Главная</string>
+    <string name="menu_title_veterinarians">Врачи</string>
+    <string name="menu_title_procedures">Процедуры</string>
+    <string name="menu_title_account">Профиль</string>
 </resources>
