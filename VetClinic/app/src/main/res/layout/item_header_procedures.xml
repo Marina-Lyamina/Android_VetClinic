@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0.3dp"
+        android:layout_marginBottom="0.3dp"
+        android:layout_weight="1"
+        android:background="@drawable/item_header_procedures_border"
+        android:paddingStart="8dp"
+        android:paddingEnd="16dp"
+        android:text="@string/title_name_procedure"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0.3dp"
+        android:width="80dp"
+        android:background="@drawable/item_header_procedures_border"
+        android:gravity="end"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/title_price_procedure"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+</LinearLayout>

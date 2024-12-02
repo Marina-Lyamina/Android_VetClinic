@@ -4,4 +4,6 @@
     <string name="menu_title_veterinarians">Врачи</string>
     <string name="menu_title_procedures">Процедуры</string>
     <string name="menu_title_account">Профиль</string>
+    <string name="title_name_procedure">Название</string>
+    <string name="title_price_procedure">Цена, ₽</string>
 </resources>
