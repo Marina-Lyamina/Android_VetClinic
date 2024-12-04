@@ -44,7 +44,7 @@ class ProcedureAdapter(private val context: Context, private val procedures: Lis
         if (holder is ProcedureViewHolder) {
             val procedure = procedures[position - 1]
             holder.nameTextView.text = procedure.name
-            holder.priceTextView.text = String.format("%d", procedure.price)
+            holder.priceTextView.text = procedure.price.toString()
         }
     }
 
