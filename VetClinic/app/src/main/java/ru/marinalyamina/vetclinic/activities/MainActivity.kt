@@ -1,5 +1,6 @@
 package ru.marinalyamina.vetclinic.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupBottomNavigation()
+
+        binding.buttonGoToOtherActivity.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupBottomNavigation() {

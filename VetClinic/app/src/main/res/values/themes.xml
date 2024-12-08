@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.VetClinic" parent="Base.Theme.VetClinic" />
+
+
+    <style name="EditTextStyle">
+        <!--        todo-->
+    </style>
+
 </resources>

@@ -2,8 +2,19 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
     <color name="blue1">#94A9F3</color>
     <color name="blue2">#D9E0FB</color>
     <color name="blue3">#3353D7</color>
+
+    <color name="pink1">#FCA377</color>
+
+    <color name="orange1">#FFB962</color>
+    <color name="orange2">#FCD882</color>
+
+    <color name="purple1">#5A5AA9</color>
+    <color name="purple2">#D0A3F6</color>
+    <color name="purple3">#785BD9</color>
 
 </resources>

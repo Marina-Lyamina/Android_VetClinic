@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">VetClinic</string>
+
     <string name="menu_title_home">Главная</string>
     <string name="menu_title_veterinarians">Врачи</string>
     <string name="menu_title_procedures">Процедуры</string>
     <string name="menu_title_account">Профиль</string>
+
     <string name="title_name_procedure">Название</string>
     <string name="title_price_procedure">Цена, ₽</string>
+
+    <string name="title_welcome">Добро пожаловать!</string>
+    <string name="title_login_btn">Войти</string>
+    <string name="title_login_username">Имя пользователя</string>
+    <string name="title_login_password">Пароль</string>
+
+
 </resources>
