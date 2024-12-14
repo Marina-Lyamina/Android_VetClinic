@@ -2,17 +2,17 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/menu_ic_home"
-        android:title="@string/menu_title_home" />
+        android:title="@string/title_home" />
     <item
         android:id="@+id/veterinarians"
         android:icon="@drawable/menu_ic_veterinarians"
-        android:title="@string/menu_title_veterinarians" />
+        android:title="@string/title_veterinarians" />
     <item
         android:id="@+id/procedures"
         android:icon="@drawable/menu_ic_procedures"
-        android:title="@string/menu_title_procedures" />
+        android:title="@string/title_procedures" />
     <item
         android:id="@+id/account"
         android:icon="@drawable/menu_ic_account"
-        android:title="@string/menu_title_account" />
+        android:title="@string/title_account" />
 </menu>

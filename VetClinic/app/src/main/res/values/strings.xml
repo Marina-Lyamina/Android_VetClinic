@@ -1,18 +1,30 @@
 <resources>
     <string name="app_name">VetClinic</string>
 
-    <string name="menu_title_home">Главная</string>
-    <string name="menu_title_veterinarians">Врачи</string>
-    <string name="menu_title_procedures">Процедуры</string>
-    <string name="menu_title_account">Профиль</string>
+    <string name="title_home">Главная</string>
+    <string name="title_veterinarians">Врачи</string>
+    <string name="title_procedures">Процедуры</string>
+    <string name="title_account">Профиль</string>
 
     <string name="title_name_procedure">Название</string>
     <string name="title_price_procedure">Цена, ₽</string>
 
     <string name="title_welcome">Добро пожаловать!</string>
     <string name="title_login_btn">Войти</string>
-    <string name="title_login_username">Имя пользователя</string>
-    <string name="title_login_password">Пароль</string>
+    <string name="title_register_redirect">Ещё нет аккаунта? Регистрация</string>
 
+    <string name="title_registration">Регистрация</string>
+    <string name="title_register_btn">Создать аккаунт</string>
+    <string name="title_login_redirect">Уже есть аккаунт? Авторизация</string>
+
+    <string name="title_username">Логин</string>
+    <string name="title_password">Пароль</string>
+    <string name="title_confirm_password">Подтвердите пароль</string>
+
+    <string name="title_first_name">Имя</string>
+    <string name="title_last_name">Фамилия</string>
+    <string name="title_patronymic">Отчество</string>
+    <string name="title_birthday">Дата рождения</string>
+    <string name="title_email">Email</string>
 
 </resources>

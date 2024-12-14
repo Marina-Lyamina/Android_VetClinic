@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.marinalyamina.vetclinic.R
-import ru.marinalyamina.vetclinic.models.Procedure
+import ru.marinalyamina.vetclinic.models.entities.Procedure
 
 class ProcedureAdapter(private val context: Context, private val procedures: List<Procedure>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

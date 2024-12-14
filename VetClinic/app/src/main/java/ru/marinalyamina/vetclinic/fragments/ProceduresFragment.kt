@@ -12,10 +12,10 @@ import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.adapters.ProcedureAdapter
 import ru.marinalyamina.vetclinic.api.ApiService
 import ru.marinalyamina.vetclinic.api.RetrofitClient
-import ru.marinalyamina.vetclinic.models.Procedure
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.marinalyamina.vetclinic.models.entities.Procedure
 
 class ProceduresFragment : Fragment(R.layout.fragment_procedures) {
 
@@ -51,14 +51,16 @@ class ProceduresFragment : Fragment(R.layout.fragment_procedures) {
                 }
 
                 override fun onFailure(call: Call<List<Procedure>>, t: Throwable) {
-                    Log.e("ProceduresFragment", "Ошибка: ${t.message}")
-                    Toast.makeText(requireContext(), "Ошибка подключения", Toast.LENGTH_SHORT).show()
+                    // Проверка isAdded перед доступом к контексту
+                    if (isAdded) {
+                        Log.e("ProceduresFragment", "Ошибка: ${t.message}")
+                        Toast.makeText(requireContext(), "Ошибка подключения", Toast.LENGTH_SHORT).show()
+                    }
                 }
             })
         } catch (e: Exception) {
             Log.e("ProceduresFragment", "Exception: ${e.message}")
         }
-
     }
-
 }
+

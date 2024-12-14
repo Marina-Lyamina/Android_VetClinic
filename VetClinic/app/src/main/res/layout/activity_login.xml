@@ -1,6 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -31,7 +32,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topPattern" />
 
-    <!--    линия-->
     <TextView
         android:id="@+id/subtitleText"
         android:background="@drawable/line_orange"
@@ -56,7 +56,7 @@
             android:id="@+id/usernameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title_login_username"
+            android:hint="@string/title_username"
             android:inputType="text"
             android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -74,7 +74,7 @@
 
         <EditText
             android:id="@+id/passwordInput"
-            android:hint="@string/title_login_password"
+            android:hint="@string/title_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -95,15 +95,18 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
 
     <TextView
-        android:id="@+id/footerText"
+        android:id="@+id/registerRedirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TODO регистрация"
-        android:textSize="12sp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/title_register_redirect"
+        android:textColor="@color/purple1"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

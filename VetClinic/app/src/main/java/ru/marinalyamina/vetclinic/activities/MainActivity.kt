@@ -3,6 +3,7 @@ package ru.marinalyamina.vetclinic.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.databinding.ActivityMainBinding
@@ -20,38 +21,59 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+//        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        if (savedInstanceState == null) {
+            replaceFragment(HomeFragment())
+            updateToolbarTitle(R.string.title_home)
+        }
+
         setupBottomNavigation()
 
-        binding.buttonGoToOtherActivity.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.buttonGoToOtherActivity.setOnClickListener {
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun setupBottomNavigation() {
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             val fragment = when (menuItem.itemId) {
-                R.id.home -> HomeFragment()
-                R.id.veterinarians -> VeterinariansFragment()
-                R.id.procedures -> ProceduresFragment()
-                R.id.account -> AccountFragment()
+                R.id.home -> {
+                    updateToolbarTitle(R.string.title_home)
+                    HomeFragment()
+                }
+                R.id.veterinarians -> {
+                    updateToolbarTitle(R.string.title_veterinarians)
+                    VeterinariansFragment()
+                }
+                R.id.procedures -> {
+                    updateToolbarTitle(R.string.title_procedures)
+                    ProceduresFragment()
+                }
+                R.id.account -> {
+                    updateToolbarTitle(R.string.title_account)
+                    AccountFragment()
+                }
                 else -> null
             }
             fragment?.let {
                 replaceFragment(it)
-                setGroupCheckable(true)
             }
             true
         }
     }
 
-    private fun setGroupCheckable(enabled: Boolean) {
-        binding.bottomNavigationView.menu.setGroupCheckable(0, enabled, true)
+    private fun updateToolbarTitle(titleResId: Int) {
+        supportActionBar?.title = getString(titleResId)
     }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, fragment)
-            .commit()
+            .commitAllowingStateLoss()
     }
 }
