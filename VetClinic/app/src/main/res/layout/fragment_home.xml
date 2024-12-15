@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    android:padding="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAnimals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HOME" />
-
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 </FrameLayout>

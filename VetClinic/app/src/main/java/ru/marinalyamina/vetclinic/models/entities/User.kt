@@ -9,6 +9,8 @@ data class User(
     var patronymic: String? = null,
     var birthday: LocalDate? = null,
     var email: String? = null,
-    var phone: String? = null,
-
-)
+    var phone: String? = null
+){
+    val fullName: String
+        get() = "$surname ${name} ${patronymic ?: ""}".trim()
+}

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.databinding.ActivityMainBinding
 import ru.marinalyamina.vetclinic.fragments.AccountFragment
+import androidx.core.content.ContextCompat
 import ru.marinalyamina.vetclinic.fragments.HomeFragment
 import ru.marinalyamina.vetclinic.fragments.ProceduresFragment
 import ru.marinalyamina.vetclinic.fragments.VeterinariansFragment
@@ -68,7 +69,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateToolbarTitle(titleResId: Int) {
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         supportActionBar?.title = getString(titleResId)
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+
     }
 
     private fun replaceFragment(fragment: Fragment) {

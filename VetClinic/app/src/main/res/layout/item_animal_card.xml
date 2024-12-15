@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/card_background"
+    android:elevation="4dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Фото питомца -->
+    <ImageView
+        android:id="@+id/imageViewAnimal"
+        android:layout_width="132dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cat" />
+
+    <!-- Кличка питомца -->
+    <TextView
+        android:id="@+id/textViewAnimalName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/imageViewAnimal"
+        android:layout_alignTop="@id/imageViewAnimal"
+        android:text="Барсик"
+        android:textColor="@color/purple1"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Кнопка "Подробнее" -->
+    <TextView
+        android:id="@+id/buttonViewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/imageViewAnimal"
+        android:layout_alignParentEnd="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/title_details_btn"
+        android:textColor="@color/purple1"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@drawable/line_orange"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/imageViewAnimal"
+        android:gravity="center_vertical" />
+
+    <!-- Заголовок "Предстоящие приемы" -->
+    <TextView
+        android:id="@+id/textViewUpcomingAppointmentsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:layout_marginTop="8dp"
+        android:text="@string/coming_appointments"
+        android:textColor="@color/purple1"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Список приемов -->
+    <LinearLayout
+        android:id="@+id/upcomingAppointmentsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewUpcomingAppointmentsTitle"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <!-- Прием 1 -->
+        <TextView
+            android:id="@+id/appointment1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25.12.2024 - Иванов И.И."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Прием 2 -->
+        <TextView
+            android:id="@+id/appointment2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="26.12.2024 - Петров П.П."
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Прием 3 -->
+        <TextView
+            android:id="@+id/appointment3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="27.12.2024 - Сидоров А.А."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

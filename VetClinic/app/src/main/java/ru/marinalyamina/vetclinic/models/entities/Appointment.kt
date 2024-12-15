@@ -3,12 +3,15 @@ package ru.marinalyamina.vetclinic.models.entities
 import java.time.LocalDateTime
 
 data class Appointment(
-    var id: Long? = null,
-    var date: LocalDateTime,
-    var reason: String? = null,
-    var diagnosis: String? = null,
-    var medicalPrescription: String? = null,
-    var animal: Animal? = null,
-    var employees: List<Employee>? = null,
-    var procedures: List<Procedure>? = null
+    val id: Long? = null,
+    //TODO
+//    val date: LocalDateTime,
+    val date: String,
+    val reason: String? = null,
+    val diagnosis: String? = null,
+    val medicalPrescription: String? = null,
+    val animal: Animal? = null,
+    val employees: List<Employee> = emptyList(),
+    val procedures: List<Procedure> = emptyList(),
+    val files: List<DbFile> = emptyList()
 )

@@ -14,8 +14,8 @@
         android:background="@color/purple1"
         android:elevation="4dp"
         android:titleTextColor="@color/white"
-        app:title="@string/app_name"
         app:layout_scrollFlags="scroll|enterAlways"
+        app:title="@string/app_name"
         tools:ignore="MissingConstraints" />
 
     <FrameLayout

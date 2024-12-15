@@ -26,5 +26,8 @@
     <string name="title_patronymic">Отчество</string>
     <string name="title_birthday">Дата рождения</string>
     <string name="title_email">Email</string>
+    <string name="edit">Изменить</string>
+    <string name="title_details_btn">Подробнее</string>
+    <string name="coming_appointments">Предстоящие приемы</string>
 
 </resources>
