@@ -11,5 +11,3 @@
         android:paddingBottom="8dp" />
 
 </FrameLayout>
-
-<!--    android:background="@android:color/background_light"-->

@@ -1,0 +1,41 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text = "@string/create_schedule"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewEmployeeName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text = "Врач: ФИО"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/textViewDateSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text = "Дата: 20.20.2020"
+            android:textSize="17sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerScheduleAnimal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
+</ScrollView>

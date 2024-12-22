@@ -1,6 +1,5 @@
 package ru.marinalyamina.vetclinic.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.models.entities.Procedure
 
-class ProcedureAdapter(private val context: Context, private val procedures: List<Procedure>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ProceduresAdapter(
+    private val procedureList: List<Procedure>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val TYPE_HEADER = 0
@@ -42,13 +42,15 @@ class ProcedureAdapter(private val context: Context, private val procedures: Lis
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ProcedureViewHolder) {
-            val procedure = procedures[position - 1]
+            val procedure = procedureList[position - 1]
             holder.nameTextView.text = procedure.name
             holder.priceTextView.text = procedure.price.toString()
         }
     }
 
     override fun getItemCount(): Int {
-        return procedures.size + 1
+        return procedureList.size + 1
     }
 }
+
+

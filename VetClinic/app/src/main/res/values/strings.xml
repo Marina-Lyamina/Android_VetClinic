@@ -28,6 +28,16 @@
     <string name="title_email">Email</string>
     <string name="edit">Изменить</string>
     <string name="title_details_btn">Подробнее</string>
-    <string name="coming_appointments">Предстоящие приемы</string>
+    <string name="coming_appointments">Записи на приемы</string>
+    <string name="all_appointments">Все приемы</string>
+    <string name="update_btn">Изменить</string>
+    <string name="delete_btn">Удалить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="schedule">Расписание</string>
+    <string name="record_btn">Записаться\n</string>
+    <string name="not_free_schedules">Нет свободных записей</string>
+    <string name="create_schedule">"Вы хотите записаться: "</string>
+    <string name="choose_btn">Выбрать</string>
 
 </resources>

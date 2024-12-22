@@ -8,18 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.marinalyamina.vetclinic.R
-import ru.marinalyamina.vetclinic.adapters.AnimalAdapter
+import ru.marinalyamina.vetclinic.adapters.AnimalsAdapter
 import ru.marinalyamina.vetclinic.api.ApiService
-import ru.marinalyamina.vetclinic.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.marinalyamina.vetclinic.api.RetrofitClient
 import ru.marinalyamina.vetclinic.models.entities.Animal
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AnimalAdapter
+    private lateinit var adapter: AnimalsAdapter
     private val animalList = mutableListOf<Animal>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +28,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         recyclerView = view.findViewById(R.id.recyclerViewAnimals)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = AnimalAdapter(requireContext(), animalList)
+        adapter = AnimalsAdapter(requireContext(), animalList) { selectedAnimal ->
+            navigateToAnimalDetails(selectedAnimal)
+        }
         recyclerView.adapter = adapter
 
         fetchAnimals()
@@ -38,6 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         try {
             val apiService = RetrofitClient.getRetrofitInstance().create(ApiService::class.java)
             val call = apiService.getAnimalsWithFutureAppointments()
+
             call.enqueue(object : Callback<List<Animal>> {
                 override fun onResponse(call: Call<List<Animal>>, response: Response<List<Animal>>) {
                     if (response.isSuccessful && response.body() != null) {
@@ -60,5 +63,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         } catch (e: Exception) {
             Log.e("HomeFragment", "Exception: ${e.message}")
         }
+    }
+
+    private fun navigateToAnimalDetails(animal: Animal) {
+        val fragment = AnimalDetailsFragment()
+
+        val bundle = Bundle().apply {
+            animal.id?.let { putLong("animalId", it) } // Передаем только ID
+        }
+        fragment.arguments = bundle
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

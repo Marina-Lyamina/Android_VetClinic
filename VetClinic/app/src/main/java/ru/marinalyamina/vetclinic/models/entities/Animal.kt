@@ -1,6 +1,7 @@
 package ru.marinalyamina.vetclinic.models.entities
 
 import ru.marinalyamina.vetclinic.models.enums.AnimalGender
+import java.io.Serializable
 import java.time.LocalDate
 
 data class Animal(
@@ -16,4 +17,4 @@ data class Animal(
     val client: Client? = null,
     val appointments: List<Appointment> = emptyList(),
     val schedules: List<Schedule> = emptyList()
-)
+): Serializable

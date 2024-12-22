@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/card_background"
+    android:elevation="4dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- ФИО -->
+    <TextView
+        android:id="@+id/textViewEmployeeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="ФИО"
+        android:textColor="@color/purple1"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Фото -->
+    <ImageView
+        android:id="@+id/imageViewEmployee"
+        android:layout_width="182dp"
+        android:layout_height="177dp"
+        android:layout_below="@id/textViewEmployeeName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/doc" />
+
+    <!-- Должность -->
+    <TextView
+        android:id="@+id/textViewEmployeePosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewEmployee"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Должность"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!-- Кнопка "Подробнее" -->
+    <TextView
+        android:id="@+id/buttonViewDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewEmployeePosition"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:text="@string/title_details_btn"
+        android:textColor="@color/purple1"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

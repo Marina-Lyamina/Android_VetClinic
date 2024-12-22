@@ -1,31 +1,36 @@
 package ru.marinalyamina.vetclinic.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.models.entities.Animal
-import java.text.SimpleDateFormat
-import java.util.Locale
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
-class AnimalAdapter(
+class AnimalsAdapter(
     private val context: Context,
-    private val animalList: List<Animal>
-) : RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder>() {
+    private val animalList: List<Animal>,
+    private val onAnimalClick: (Animal) -> Unit
+) : RecyclerView.Adapter<AnimalsAdapter.AnimalViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_animal_card, parent, false)
         return AnimalViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AnimalViewHolder, position: Int) {
         val animal = animalList[position]
 
@@ -35,24 +40,23 @@ class AnimalAdapter(
 //            holder.imageViewAnimal.setImageResource(R.drawable.cat) // изображение по умолчанию
 //        }
 
-        holder.imageViewAnimal.setImageResource(R.drawable.cat) // изображение по умолчанию
+        holder.imageViewAnimal.setImageResource(R.drawable.animal_default) // изображение по умолчанию
 
         // имя питомца
         holder.textViewAnimalName.text = animal.name
 
-        // список предстоящих приемов
-        // если есть предстоящие приемы
-        if (animal.appointments.isNotEmpty()) {
-            holder.textViewUpcomingAppointmentsTitle.visibility = View.VISIBLE
-            holder.upcomingAppointmentsContainer.removeAllViews()
+        // Обработка предстоящих приемов
+        holder.textViewUpcomingSchedulesTitle.visibility = View.VISIBLE
+        holder.upcomingSchedulesContainer.removeAllViews()
 
-            for (appointment in animal.appointments) {
-                val dateFormatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-                val formattedDate = dateFormatter.format(appointment.date)
+        if (animal.schedules.isNotEmpty()) {
+            // Если есть предстоящие приемы
+            for (schedule in animal.schedules) {
 
-                val employeeNames = appointment.employees.joinToString(", ") { it.user?.fullName ?: "Неизвестен" }
-                val appointmentView = TextView(context).apply {
-                    text = "${appointment.date} - $employeeNames"
+                val scheduleView = TextView(context).apply {
+                    val localDateTime = LocalDateTime.parse(schedule.date)
+                    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
+                    text = "${formatter.format(localDateTime)} — ${schedule.employee?.user?.shortFullName}"
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                     textSize = 16f
                     layoutParams = LinearLayout.LayoutParams(
@@ -62,11 +66,10 @@ class AnimalAdapter(
                         setMargins(0, 0, 0, 4)
                     }
                 }
-                holder.upcomingAppointmentsContainer.addView(appointmentView)
+                holder.upcomingSchedulesContainer.addView(scheduleView)
             }
-        // если нет предстоящих приемов
         } else {
-            holder.textViewUpcomingAppointmentsTitle.visibility = View.VISIBLE
+            // Если нет предстоящих приемов
             val noAppointmentsMessage = TextView(context).apply {
                 text = "Нет предстоящих приемов"
                 setTextColor(ContextCompat.getColor(context, R.color.black))
@@ -78,12 +81,12 @@ class AnimalAdapter(
                     setMargins(0, 0, 0, 4)
                 }
             }
-            holder.upcomingAppointmentsContainer.removeAllViews()
-            holder.upcomingAppointmentsContainer.addView(noAppointmentsMessage)
+            holder.upcomingSchedulesContainer.addView(noAppointmentsMessage)
         }
 
+        // Подробнее
         holder.buttonViewDetails.setOnClickListener {
-            // переход к деталям питомца
+            onAnimalClick(animal)
         }
     }
 
@@ -94,11 +97,7 @@ class AnimalAdapter(
         val imageViewAnimal: ImageView = view.findViewById(R.id.imageViewAnimal)
         val textViewAnimalName: TextView = view.findViewById(R.id.textViewAnimalName)
         val buttonViewDetails: TextView = view.findViewById(R.id.buttonViewDetails)
-        val textViewUpcomingAppointmentsTitle: TextView = view.findViewById(R.id.textViewUpcomingAppointmentsTitle)
-        val upcomingAppointmentsContainer: LinearLayout = view.findViewById(R.id.upcomingAppointmentsContainer)
+        val textViewUpcomingSchedulesTitle: TextView = view.findViewById(R.id.textViewUpcomingSchedulesTitle)
+        val upcomingSchedulesContainer: LinearLayout = view.findViewById(R.id.upcomingSchedulesContainer)
     }
 }
-
-
-
-

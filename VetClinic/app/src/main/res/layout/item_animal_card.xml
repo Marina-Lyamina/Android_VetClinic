@@ -16,7 +16,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/cat" />
+        android:src="@drawable/animal_default" />
 
     <!-- Кличка питомца -->
     <TextView
@@ -54,7 +54,7 @@
 
     <!-- Заголовок "Предстоящие приемы" -->
     <TextView
-        android:id="@+id/textViewUpcomingAppointmentsTitle"
+        android:id="@+id/textViewUpcomingSchedulesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/divider"
@@ -66,41 +66,22 @@
 
     <!-- Список приемов -->
     <LinearLayout
-        android:id="@+id/upcomingAppointmentsContainer"
+        android:id="@+id/upcomingSchedulesContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewUpcomingAppointmentsTitle"
+        android:layout_below="@id/textViewUpcomingSchedulesTitle"
         android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <!-- Прием 1 -->
         <TextView
-            android:id="@+id/appointment1"
+            android:id="@+id/schedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="25.12.2024 - Иванов И.И."
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginBottom="4dp" />
-
-        <!-- Прием 2 -->
-        <TextView
-            android:id="@+id/appointment2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="26.12.2024 - Петров П.П."
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp" />
-
-        <!-- Прием 3 -->
-        <TextView
-            android:id="@+id/appointment3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="27.12.2024 - Сидоров А.А."
-            android:textColor="@color/black"
-            android:textSize="16sp" />
 
     </LinearLayout>
 
