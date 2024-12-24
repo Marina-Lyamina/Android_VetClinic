@@ -31,13 +31,11 @@ class LoginActivity : AppCompatActivity() {
         usernameInput = findViewById(R.id.usernameInput)
         passwordInput = findViewById(R.id.passwordInput)
 
-        // Переход к экрану регистрации
         registerRedirect.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
         }
 
-        // Обработка нажатия на кнопку "Логин"
         loginButton.setOnClickListener {
             val username = usernameInput.text.toString().trim()
             val password = passwordInput.text.toString().trim()
@@ -48,7 +46,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Валидация ввода
     private fun validateInput(username: String, password: String): Boolean {
         return when {
             username.isEmpty() -> {
@@ -63,7 +60,6 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // Вызов API для логина
     private fun loginUser(username: String, password: String) {
         val apiService = RetrofitClient.getRetrofitInstance().create(ApiService::class.java)
         val loginDTO = LoginDTO(username, password)
@@ -74,7 +70,6 @@ class LoginActivity : AppCompatActivity() {
                     val userId = response.body()!!
                     showToast(getString(R.string.login_success))
 
-                    // Переход к следующему экрану
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("USER_ID", userId)
                     startActivity(intent)
@@ -90,7 +85,6 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    // Функция для показа Toast
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

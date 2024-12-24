@@ -4,13 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import retrofit2.Call
@@ -19,6 +22,7 @@ import retrofit2.Response
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.api.ApiService
 import ru.marinalyamina.vetclinic.api.RetrofitClient
+import ru.marinalyamina.vetclinic.databinding.FragmentAccountBinding
 import ru.marinalyamina.vetclinic.models.entities.Animal
 import ru.marinalyamina.vetclinic.models.enums.AnimalGender
 import java.time.LocalDate
@@ -39,6 +43,8 @@ class AnimalDetailsFragment : Fragment(R.layout.fragment_animal_details) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        updateToolbarTitle(getString(R.string.title_animal_details))
 
         //элементы xml
         val imageViewAnimal : ImageView = view.findViewById(R.id.imageViewAnimal)
@@ -72,12 +78,21 @@ class AnimalDetailsFragment : Fragment(R.layout.fragment_animal_details) {
         } ?: Log.e("AnimalDetailsFragment", "Animal ID is null")
 
         buttonUpdate.setOnClickListener {
-            Toast.makeText(requireContext(), "Функция обновления", Toast.LENGTH_SHORT).show()
+            navigateToFragment(AnimalUpdateFragment().apply {
+                arguments = Bundle().apply {
+                    putLong("animalId", animalId ?: return@setOnClickListener)
+                }
+            })
         }
 
         buttonDelete.setOnClickListener {
-//            deleteAnimal(animalId)
+            navigateToFragment(AnimalDeleteFragment().apply {
+                arguments = Bundle().apply {
+                    putLong("animalId", animalId ?: return@setOnClickListener)
+                }
+            })
         }
+
     }
 
     private fun loadAnimalDetails(
@@ -262,4 +277,15 @@ class AnimalDetailsFragment : Fragment(R.layout.fragment_animal_details) {
         }
     }
 
+    private fun navigateToFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun updateToolbarTitle(title: String) {
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = title
+    }
 }

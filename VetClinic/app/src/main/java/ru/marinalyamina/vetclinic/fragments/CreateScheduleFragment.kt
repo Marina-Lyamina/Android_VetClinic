@@ -20,6 +20,7 @@ import ru.marinalyamina.vetclinic.models.entities.Animal
 import ru.marinalyamina.vetclinic.models.entities.Schedule
 import java.time.LocalDateTime
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import java.time.format.DateTimeFormatter
 
 class CreateScheduleFragment : Fragment(R.layout.fragment_create_schedule) {
@@ -36,6 +37,8 @@ class CreateScheduleFragment : Fragment(R.layout.fragment_create_schedule) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        updateToolbarTitle(getString(R.string.title_create_schedule))
 
         val textViewEmployeeName: TextView = view.findViewById(R.id.textViewEmployeeName)
         val textViewDateSchedule: TextView = view.findViewById(R.id.textViewDateSchedule)
@@ -146,6 +149,10 @@ class CreateScheduleFragment : Fragment(R.layout.fragment_create_schedule) {
             .commit()
     }
 
+    private fun updateToolbarTitle(title: String) {
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = title
+    }
 }
 
 

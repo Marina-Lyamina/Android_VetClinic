@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -51,6 +52,8 @@ class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_deta
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        updateToolbarTitle(getString(R.string.title_veterinarian_details))
 
         // Инициализация элементов UI
         textViewEmployeeName = view.findViewById(R.id.textViewEmployeeName)
@@ -159,6 +162,11 @@ class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_deta
             .replace(R.id.frameLayout, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun updateToolbarTitle(title: String) {
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = title
     }
 }
 

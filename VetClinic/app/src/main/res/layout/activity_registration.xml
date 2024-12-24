@@ -89,8 +89,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/title_birthday"
-            android:inputType="date" />
+            android:focusable="false"
+            android:clickable="true" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInputLayout"
@@ -110,13 +112,30 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginInputLayout"
+        android:id="@+id/phoneInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@id/emailInputLayout"
         app:layout_constraintStart_toStartOf="@id/emailInputLayout"
         app:layout_constraintTop_toBottomOf="@id/emailInputLayout">
+
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/title_phone"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/loginInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/phoneInputLayout"
+        app:layout_constraintStart_toStartOf="@id/phoneInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/phoneInputLayout">
 
         <EditText
             android:id="@+id/loginInput"

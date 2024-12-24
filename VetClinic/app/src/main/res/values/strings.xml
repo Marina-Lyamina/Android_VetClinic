@@ -3,7 +3,7 @@
 
     <string name="title_home">Главная</string>
     <string name="title_veterinarians">Врачи</string>
-    <string name="title_procedures">Процедуры</string>
+    <string name="title_procedures">Услуги</string>
     <string name="title_account">Профиль</string>
 
     <string name="title_name_procedure">Название</string>
@@ -55,8 +55,27 @@
     <string name="hint_email">Введите email</string>
     <string name="hint_username">Введите логин</string>
     <string name="hint_password">Введите пароль</string>
+    <string name="hint_animal_name">Введите кличку</string>
+    <string name="hint_breed">Введите породу</string>
     <string name="save">Сохранить изменения</string>
     <string name="hint_confirm_password">Подтвердите пароль</string>
     <string name="title_fullname">ФИО</string>
+    <string name="create_animal">Добавить питомца</string>
+    <string name="update_account">Изменить данные</string>
+    <string name="add_btn">Добавить</string>
+    <string name="gender_male">М</string>
+    <string name="gender_female">Ж</string>
+    <string name="gender_another">-</string>
+    <string name="title_create_animal">Добавление питомца</string>
+    <string name="title_animal_name">Кличка</string>
+    <string name="title_animalType">Вид животного</string>
+    <string name="title_gender">Пол</string>
+    <string name="title_breed">Порода</string>
+    <string name="title_account_update">Изменение данных</string>
+    <string name="title_animal_details">Подробнее о питомце</string>
+    <string name="title_veterinarian_details">Подробнее о враче</string>
+    <string name="title_create_schedule">Запись на прием</string>
+    <string name="title_animal_update">Изменение данных о питомце</string>
+    <string name="title_animal_delete">Удаление питомца</string>
 
 </resources>
