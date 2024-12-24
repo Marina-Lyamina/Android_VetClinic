@@ -2,40 +2,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text = "@string/create_schedule"
+            android:layout_height="wrap_content"
+            android:text="@string/create_schedule"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textColor="@color/purple1"
+            android:textSize="20sp"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textViewEmployeeName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text = "Врач: ФИО"
-            android:textSize="17sp" />
+            android:layout_height="wrap_content"
+            android:text="Врач: ФИО"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:id="@+id/textViewDateSchedule"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text = "Дата: 20.20.2020"
-            android:textSize="17sp" />
+            android:layout_height="wrap_content"
+            android:text="Дата: 20.20.2020"
+            android:textSize="20sp"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_animal"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/noAnimalsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerScheduleAnimal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:layout_marginTop="8dp" />
+
     </LinearLayout>
 
 </ScrollView>

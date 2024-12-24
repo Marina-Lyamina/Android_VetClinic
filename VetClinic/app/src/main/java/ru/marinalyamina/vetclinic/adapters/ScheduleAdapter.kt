@@ -12,7 +12,10 @@ import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.models.dtos.ScheduleDTO
 import java.time.LocalDateTime
 
-class ScheduleAdapter(private var schedules: List<ScheduleDTO>) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+class ScheduleAdapter(
+    private var schedules: List<ScheduleDTO>,
+    private val onScheduleClick: (ScheduleDTO) -> Unit
+) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_schedule, parent, false)
@@ -26,6 +29,10 @@ class ScheduleAdapter(private var schedules: List<ScheduleDTO>) : RecyclerView.A
         val localDateTime = LocalDateTime.parse(schedule.date)
         val time = String.format("%02d:%02d", localDateTime.hour, localDateTime.minute)
         holder.buttonSchedule.text = time
+
+        holder.buttonSchedule.setOnClickListener {
+            onScheduleClick(schedule)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

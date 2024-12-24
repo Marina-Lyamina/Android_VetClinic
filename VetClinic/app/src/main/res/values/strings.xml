@@ -20,9 +20,14 @@
     <string name="title_username">Логин</string>
     <string name="title_password">Пароль</string>
     <string name="title_confirm_password">Подтвердите пароль</string>
+    <string name="error_username_empty">Введите имя пользователя</string>
+    <string name="error_password_empty">Введите пароль</string>
+    <string name="login_success">Успешный вход!</string>
+    <string name="login_failed">Ошибка входа. Проверьте данные.</string>
+    <string name="error_network">Ошибка подключения к сети.</string>
 
-    <string name="title_first_name">Имя</string>
-    <string name="title_last_name">Фамилия</string>
+    <string name="title_name">Имя</string>
+    <string name="title_surname">Фамилия</string>
     <string name="title_patronymic">Отчество</string>
     <string name="title_birthday">Дата рождения</string>
     <string name="title_email">Email</string>
@@ -39,5 +44,19 @@
     <string name="not_free_schedules">Нет свободных записей</string>
     <string name="create_schedule">"Вы хотите записаться: "</string>
     <string name="choose_btn">Выбрать</string>
+    <string name="choose_animal">"Выберите питомца для записи: "</string>
+    <string name="profile">Ваши данные</string>
+    <string name="hint_surname">Введите фамилию</string>
+    <string name="hint_name">Введите имя</string>
+    <string name="hint_patronymic">Введите отчество(необязательно)</string>
+    <string name="hint_birthday">Введите дату рождения</string>
+    <string name="title_phone">Номер телефона</string>
+    <string name="hint_phone">Введите номер телефона</string>
+    <string name="hint_email">Введите email</string>
+    <string name="hint_username">Введите логин</string>
+    <string name="hint_password">Введите пароль</string>
+    <string name="save">Сохранить изменения</string>
+    <string name="hint_confirm_password">Подтвердите пароль</string>
+    <string name="title_fullname">ФИО</string>
 
 </resources>

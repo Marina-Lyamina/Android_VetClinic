@@ -1,56 +1,70 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
+    <!-- Название приложения -->
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/purple1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Логотип -->
     <ImageView
         android:id="@+id/topPattern"
-        android:src="@drawable/img_login"
-        android:layout_width="match_parent"
-        android:layout_height="333dp"
-        android:scaleType="fitXY"
+        android:layout_width="200dp"
+        android:layout_height="167dp"
+        android:src="@drawable/logo_purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"/>
+        app:layout_constraintTop_toBottomOf="@id/appName" />
 
+    <!-- Добро пожаловать -->
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif"
         android:text="@string/title_welcome"
-        android:textAllCaps="false"
         android:textColor="@color/purple1"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topPattern"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topPattern" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="46dp" />
 
+    <!-- Линия под заголовком -->
     <TextView
         android:id="@+id/subtitleText"
-        android:background="@drawable/line_orange"
         android:layout_width="0dp"
-        android:layout_height="7dp"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="@id/welcomeText"
+        android:layout_height="4dp"
+        android:background="@drawable/line_orange"
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
         app:layout_constraintStart_toStartOf="@id/welcomeText"
-        app:layout_constraintTop_toBottomOf="@id/welcomeText" />
+        app:layout_constraintEnd_toEndOf="@id/welcomeText"
+        android:layout_marginTop="8dp" />
 
+    <!-- Поле ввода имени пользователя -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitleText">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp">
 
         <EditText
             android:id="@+id/usernameInput"
@@ -61,45 +75,48 @@
             android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
+    <!-- Поле ввода пароля -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="@id/usernameInputLayout"
-        app:layout_constraintStart_toStartOf="@id/usernameInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/usernameInputLayout"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/passwordInput"
-            android:hint="@string/title_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/title_password"
             android:inputType="textPassword"
             android:padding="12dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Кнопка входа -->
     <Button
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/orange"
         android:text="@string/title_login_btn"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/passwordInputLayout"
-        app:layout_constraintStart_toStartOf="@+id/passwordInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
 
+    <!-- Текст ссылки на регистрацию -->
     <TextView
         android:id="@+id/registerRedirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
+        android:layout_marginBottom="18dp"
         android:text="@string/title_register_redirect"
         android:textColor="@color/purple1"
         android:textSize="16sp"
@@ -107,6 +124,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

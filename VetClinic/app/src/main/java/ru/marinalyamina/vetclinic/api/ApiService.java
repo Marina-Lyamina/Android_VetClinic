@@ -1,18 +1,13 @@
 package ru.marinalyamina.vetclinic.api;
 
-
-import android.icu.number.Scale;
-
-import com.google.gson.JsonObject;
-
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import ru.marinalyamina.vetclinic.models.dtos.CreateAnimalScheduleDTO;
 import ru.marinalyamina.vetclinic.models.dtos.LoginDTO;
 import ru.marinalyamina.vetclinic.models.dtos.ScheduleDTO;
 import ru.marinalyamina.vetclinic.models.entities.Animal;
@@ -50,5 +45,12 @@ public interface ApiService {
 
     @POST("/api/clients/registration")
     Call registration(@Body Client client);
+
+    //запись по id
+    @GET("/api/schedules/{id}")
+    Call<Schedule> getScheduleById(@Path("id") Long id);
+
+    @POST("/api/schedules/animals")
+    Call<Long> createAnimalSchedule(@Body CreateAnimalScheduleDTO animalScheduleDTO);
 
 }

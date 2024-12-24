@@ -7,6 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import ru.marinalyamina.vetclinic.R
 
-class AppointmentDetailsFragment : Fragment() {
+class AnimalUpdateFragment : Fragment() {
 
 }

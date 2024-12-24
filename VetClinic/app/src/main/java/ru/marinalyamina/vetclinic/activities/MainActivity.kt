@@ -41,6 +41,19 @@ class MainActivity : AppCompatActivity() {
 //            val intent = Intent(this, LoginActivity::class.java)
 //            startActivity(intent)
 //        }
+
+
+        /*binding.logoutButton.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("VetClinicPrefs", MODE_PRIVATE)
+            with(sharedPreferences.edit()) {
+                putBoolean("IS_LOGGED_IN", false)
+                apply()
+            }
+
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // Закрыть MainActivity
+        }*/
     }
 
     private fun setupBottomNavigation() {

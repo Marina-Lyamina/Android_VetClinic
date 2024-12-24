@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/textViewAnimalName"
@@ -16,14 +17,18 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Сима"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:layout_marginEnd="16dp" />
 
         <Button
             android:id="@+id/chooseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/choose_btn" />
+            android:text="@string/choose_btn"
+            android:minWidth="120dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
     </LinearLayout>
 
     <TextView

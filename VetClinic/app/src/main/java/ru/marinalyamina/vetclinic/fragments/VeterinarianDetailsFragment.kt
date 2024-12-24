@@ -62,7 +62,10 @@ class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_deta
         recyclerButtonsSchedules = view.findViewById(R.id.recyclerButtonsSchedules)
 
         recyclerButtonsSchedules.layoutManager = LinearLayoutManager(context)
-        scheduleAdapter = ScheduleAdapter(emptyList())
+
+        scheduleAdapter = ScheduleAdapter(emptyList()){ selectedSchedule ->
+            navigateToCreateSchedule(selectedSchedule)
+        }
         recyclerButtonsSchedules.adapter = scheduleAdapter
 
         loadEmployeeDetails()
@@ -121,7 +124,8 @@ class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_deta
                     if (response.isSuccessful) {
                         schedules = response.body() ?: emptyList()
 //                        highlightDates()
-                        scheduleAdapter = ScheduleAdapter(schedules)
+                        scheduleAdapter = ScheduleAdapter(schedules){ selectedSchedule ->
+                            navigateToCreateSchedule(selectedSchedule)}
                         recyclerButtonsSchedules.adapter = scheduleAdapter
 
                         onChangeDateSchedule(LocalDateTime.now().year, LocalDateTime.now().month.value, LocalDateTime.now().dayOfMonth)
@@ -137,35 +141,24 @@ class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_deta
         }
     }
 
-    /*private fun highlightDates() {
-        val calendar = Calendar.getInstance()
-        val currentDate = calendar.timeInMillis // Получаем текущее время
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-
-        // Выделение сегодняшней даты ярким цветом
-        calendarView.setDate(currentDate, false, true)
-
-        for (schedule in schedules) {
-            try {
-                val scheduleDate = dateFormat.parse(schedule.date)
-                scheduleDate?.let {
-                    calendar.time = it
-                    val timestamp = calendar.timeInMillis
-
-                    if (timestamp > currentDate) {
-                        calendarView.setDate(timestamp, false, true)
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }*/
-
     private fun updateUI(employee: Employee) {
         textViewEmployeeName.text = employee.user?.fullName
         textViewEmployeePosition.text = employee.position?.name
         textViewEmployeeDescription.text = employee.description
+    }
+
+    private fun navigateToCreateSchedule(scheduleDTO: ScheduleDTO) {
+        val fragment = CreateScheduleFragment()
+
+        val bundle = Bundle().apply {
+            putLong("scheduleId", scheduleDTO.id)
+        }
+        fragment.arguments = bundle
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
 

@@ -17,13 +17,13 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
 
-        binding.buttonGoToOtherActivity.setOnClickListener {
+        /*binding.buttonGoToOtherActivity.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
         return binding.root
     }
