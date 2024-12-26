@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.models.entities.Employee
 
-class VeterinariansAdapter(
+class EmployeeAdapter(
     private val context: Context,
     private val employeeList: List<Employee>,
     private val onEmployeeClick: (Employee) -> Unit
-) : RecyclerView.Adapter<VeterinariansAdapter.VeterinarianViewHolder>() {
+) : RecyclerView.Adapter<EmployeeAdapter.VeterinarianViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeterinarianViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_employee, parent, false)

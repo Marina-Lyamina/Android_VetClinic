@@ -5,8 +5,6 @@ data class User(
     var surname: String,
     var name: String,
     var patronymic: String? = null,
-    // TODO
-    // val birthday: LocalDate? = null,
     val birthday: String? = null,
     var email: String? = null,
     var phone: String? = null,

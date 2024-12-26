@@ -282,8 +282,12 @@ class AnimalDetailsFragment : Fragment(R.layout.fragment_animal_details) {
                                 val appointmentTextView = TextView(context).apply {
                                     val localDateTime = LocalDateTime.parse(appointment.date)
                                     val appointmentFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm")
-                                    //employees[0]
-                                    text = "${appointmentFormatter.format(localDateTime)} — ${appointment.employees[0].user?.shortFullName}"
+                                    val appointmentEmployees = appointment.employees
+                                    val employeeNames = appointmentEmployees.joinToString(separator = ", ") {
+                                        it.user?.shortFullName ?: "Неизвестный сотрудник"
+                                    }
+
+                                    text = "${appointmentFormatter.format(localDateTime)} — $employeeNames"
                                     setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                                     textSize = 17f
                                     layoutParams = LinearLayout.LayoutParams(

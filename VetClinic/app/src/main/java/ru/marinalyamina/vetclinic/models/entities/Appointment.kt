@@ -1,11 +1,7 @@
 package ru.marinalyamina.vetclinic.models.entities
 
-import java.time.LocalDateTime
-
 data class Appointment(
     val id: Long? = null,
-    //TODO
-//    val date: LocalDateTime,
     val date: String,
     val reason: String? = null,
     val diagnosis: String? = null,

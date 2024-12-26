@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.marinalyamina.vetclinic.R
-import ru.marinalyamina.vetclinic.adapters.VeterinariansAdapter
+import ru.marinalyamina.vetclinic.adapters.EmployeeAdapter
 import ru.marinalyamina.vetclinic.api.ApiService
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,7 +19,7 @@ import ru.marinalyamina.vetclinic.models.entities.Employee
 
 class EmployeesFragment : Fragment(R.layout.fragment_employees) {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: VeterinariansAdapter
+    private lateinit var adapter: EmployeeAdapter
     private val employeeList = mutableListOf<Employee>()
 
 
@@ -30,7 +30,7 @@ class EmployeesFragment : Fragment(R.layout.fragment_employees) {
         recyclerView = view.findViewById(R.id.recyclerViewVeterinarians)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = VeterinariansAdapter(requireContext(), employeeList){ selectedVeterinarian ->
+        adapter = EmployeeAdapter(requireContext(), employeeList){ selectedVeterinarian ->
             navigateToVeterinarianDetails(selectedVeterinarian)
         }
         recyclerView.adapter = adapter

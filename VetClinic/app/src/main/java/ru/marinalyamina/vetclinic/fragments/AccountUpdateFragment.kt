@@ -65,7 +65,7 @@ class AccountUpdateFragment : Fragment(R.layout.fragment_account_update) {
                 requireActivity(),
                 { _, selectedYear, selectedMonth, selectedDay ->
                     val localDate = LocalDate.of(selectedYear, selectedMonth + 1, selectedDay)
-                    val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                     editTextBirthDate.setText(localDate.format(formatter))
                 },
                 year, month, day
@@ -91,10 +91,12 @@ class AccountUpdateFragment : Fragment(R.layout.fragment_account_update) {
                         editTextName.setText(client.user?.name )
                         editTextSurname.setText(client.user?.surname)
                         editTextPatronymic.setText(client.user?.patronymic)
-                        val localDate = LocalDate.parse(client.user?.birthday, DateTimeFormatter.ISO_LOCAL_DATE)
-                        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-                        val formattedDate = localDate.format(formatter)
-                        editTextBirthday.setText(formattedDate)
+                        if(!client.user?.birthday.isNullOrBlank()){
+                            val localDate = LocalDate.parse(client.user?.birthday, DateTimeFormatter.ISO_LOCAL_DATE)
+                            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                            val formattedDate = localDate.format(formatter)
+                            editTextBirthday.setText(formattedDate)
+                        }
                         editTextEmail.setText(client.user?.email)
                         editTextPhone.setText(client.user?.phone)
                         editTextUsername.setText(client.user?.username)

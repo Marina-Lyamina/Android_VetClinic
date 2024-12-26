@@ -92,10 +92,15 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                     val client = response.body()
                     if (client != null) {
                         binding.textViewFullName.text = client.user?.fullName ?: "-"
-                        val localDate = LocalDate.parse(client.user?.birthday, DateTimeFormatter.ISO_LOCAL_DATE)
-                        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-                        val formattedDate = localDate.format(formatter)
-                        binding.textViewBirthday.text = formattedDate ?: "-"
+                        if(!client.user?.birthday.isNullOrBlank()){
+                            val localDate = LocalDate.parse(client.user?.birthday, DateTimeFormatter.ISO_LOCAL_DATE)
+                            val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+                            val formattedDate = localDate.format(formatter)
+                            binding.textViewBirthday.text = formattedDate ?: "-"
+                        }
+                        else{
+                            binding.textViewBirthday.text = "-"
+                        }
                         binding.textViewPhoneNumber.text = client.user?.phone ?: "-"
                         binding.textViewEmail.text = client.user?.email ?: "-"
                     } else {
