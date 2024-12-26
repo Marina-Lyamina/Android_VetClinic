@@ -2,7 +2,10 @@ package ru.marinalyamina.vetclinic.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Build
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,13 +37,30 @@ class AnimalsAdapter(
     override fun onBindViewHolder(holder: AnimalViewHolder, position: Int) {
         val animal = animalList[position]
 
-//        if (animal.mainImage != null) {
-//            Picasso.get().load(animal.mainImage).into(holder.imageViewAnimal)
-//        } else {
-//            holder.imageViewAnimal.setImageResource(R.drawable.cat) // изображение по умолчанию
-//        }
+        if (animal.mainImage?.content.isNullOrBlank()) {
+            // изображение по умолчанию
+            holder.imageViewAnimal.setImageResource(R.drawable.animal_default)
+        } else {
+            try {
+                val byteArray = animal.mainImage?.content?.let { Base64.decode(it, Base64.DEFAULT) }
 
-        holder.imageViewAnimal.setImageResource(R.drawable.animal_default) // изображение по умолчанию
+                if (byteArray != null) {
+                    val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+
+                    if (bitmap != null) {
+                        holder.imageViewAnimal.setImageBitmap(bitmap)
+
+                    } else {
+                        holder.imageViewAnimal.setImageResource(R.drawable.animal_default)
+                    }
+                } else {
+                    holder.imageViewAnimal.setImageResource(R.drawable.animal_default)
+                }
+            } catch (e: Exception) {
+                holder.imageViewAnimal.setImageResource(R.drawable.animal_default)
+                Log.e("AnimalDetailsFragment", "Ошибка при загрузке изображения: ${e.message}")
+            }
+        }
 
         // имя питомца
         holder.textViewAnimalName.text = animal.name

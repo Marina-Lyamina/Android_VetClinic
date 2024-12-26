@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="_____"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/purple1" />
@@ -33,7 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Вид животного: "
             android:textSize="17sp"
             android:textColor="@color/black" />
 
@@ -42,7 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Порода: "
             android:textSize="17sp"
             android:textColor="@color/black" />
 
@@ -51,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Пол: "
             android:textSize="17sp"
             android:textColor="@color/black" />
 
@@ -60,9 +56,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Дата рождения: "
             android:textSize="17sp"
             android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/buttonUpdatePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/update_photo_btn"
+            android:textSize="17sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -169,7 +172,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="12.03.2024 12:30:00 - Петров И.И."
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

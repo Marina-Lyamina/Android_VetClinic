@@ -1,10 +1,11 @@
 package ru.marinalyamina.vetclinic.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
 import android.widget.CalendarView
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,11 +25,9 @@ import ru.marinalyamina.vetclinic.api.RetrofitClient
 import ru.marinalyamina.vetclinic.models.dtos.ScheduleDTO
 import ru.marinalyamina.vetclinic.models.entities.Employee
 
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
-import java.util.*
 
-class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_details) {
+class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
 
     private var employeeId: Long? = null
     private lateinit var apiService: ApiService
@@ -148,6 +147,31 @@ class VeterinarianDetailsFragment : Fragment(R.layout.fragment_veterinarian_deta
         textViewEmployeeName.text = employee.user?.fullName
         textViewEmployeePosition.text = employee.position?.name
         textViewEmployeeDescription.text = employee.description
+
+        if (employee.mainImage?.content.isNullOrBlank()) {
+            // изображение по умолчанию
+            imageViewEmployee.setImageResource(R.drawable.doc)
+        } else {
+            try {
+                val byteArray = employee.mainImage?.content?.let { Base64.decode(it, Base64.DEFAULT) }
+
+                if (byteArray != null) {
+                    val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+
+                    if (bitmap != null) {
+                        imageViewEmployee.setImageBitmap(bitmap)
+
+                    } else {
+                        imageViewEmployee.setImageResource(R.drawable.doc)
+                    }
+                } else {
+                    imageViewEmployee.setImageResource(R.drawable.doc)
+                }
+            } catch (e: Exception) {
+                imageViewEmployee.setImageResource(R.drawable.doc)
+                Log.e("AnimalDetailsFragment", "Ошибка при загрузке изображения: ${e.message}")
+            }
+        }
     }
 
     private fun navigateToCreateSchedule(scheduleDTO: ScheduleDTO) {

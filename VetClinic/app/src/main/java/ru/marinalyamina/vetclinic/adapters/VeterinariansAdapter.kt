@@ -1,6 +1,9 @@
 package ru.marinalyamina.vetclinic.adapters
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.marinalyamina.vetclinic.R
-import ru.marinalyamina.vetclinic.models.entities.Animal
 import ru.marinalyamina.vetclinic.models.entities.Employee
 
 class VeterinariansAdapter(
@@ -18,21 +20,41 @@ class VeterinariansAdapter(
 ) : RecyclerView.Adapter<VeterinariansAdapter.VeterinarianViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VeterinarianViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_veterinarian, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_employee, parent, false)
         return VeterinarianViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: VeterinarianViewHolder, position: Int) {
         val employee = employeeList[position]
 
-        // ФИО
         holder.textViewEmployeeName.text = employee.user?.fullName
 
-        // должность
         holder.textViewEmployeePosition.text = employee.position?.name
 
-        // изображение по умолчанию
-        holder.imageViewEmployee.setImageResource(R.drawable.doc)
+        if (employee.mainImage?.content.isNullOrBlank()) {
+            // изображение по умолчанию
+            holder.imageViewEmployee.setImageResource(R.drawable.doc)
+        } else {
+            try {
+                val byteArray = employee.mainImage?.content?.let { Base64.decode(it, Base64.DEFAULT) }
+
+                if (byteArray != null) {
+                    val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+
+                    if (bitmap != null) {
+                        holder.imageViewEmployee.setImageBitmap(bitmap)
+
+                    } else {
+                        holder.imageViewEmployee.setImageResource(R.drawable.doc)
+                    }
+                } else {
+                    holder.imageViewEmployee.setImageResource(R.drawable.doc)
+                }
+            } catch (e: Exception) {
+                holder.imageViewEmployee.setImageResource(R.drawable.doc)
+                Log.e("AnimalDetailsFragment", "Ошибка при загрузке изображения: ${e.message}")
+            }
+        }
 
         // подробнее
         holder.buttonViewDetails.setOnClickListener {

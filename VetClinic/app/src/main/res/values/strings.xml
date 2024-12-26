@@ -77,5 +77,15 @@
     <string name="title_create_schedule">Запись на прием</string>
     <string name="title_animal_update">Изменение данных о питомце</string>
     <string name="title_animal_delete">Удаление питомца</string>
+    <string name="title_animalsList_isEmpty">У вас пока нет питомцев, для добавления перейдите в профиль</string>
+    <string name="title_animal_create">Добавление питомца</string>
+    <string name="title_confirm_delete">Вы уверены, что хотите удалить данного питомца?</string>
+    <string name="update_photo_btn">Изменить фото</string>
+    <string name="title_appointment_details">Подробнее о приеме</string>
+    <string name="logout">Выйти</string>
+    <string name="logout_confirmation_title">Подтвердите выход</string>
+    <string name="logout_confirmation_message">Вы уверены, что хотите выйти?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
 </resources>

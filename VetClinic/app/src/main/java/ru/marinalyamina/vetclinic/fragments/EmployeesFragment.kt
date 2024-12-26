@@ -14,14 +14,15 @@ import ru.marinalyamina.vetclinic.api.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.marinalyamina.vetclinic.adapters.AnimalsAdapter
 import ru.marinalyamina.vetclinic.api.RetrofitClient
 import ru.marinalyamina.vetclinic.models.entities.Employee
 
-class VeterinariansFragment : Fragment(R.layout.fragment_veterinarians) {
+class EmployeesFragment : Fragment(R.layout.fragment_employees) {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: VeterinariansAdapter
     private val employeeList = mutableListOf<Employee>()
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,7 +40,7 @@ class VeterinariansFragment : Fragment(R.layout.fragment_veterinarians) {
     }
 
     private fun navigateToVeterinarianDetails(employee: Employee) {
-        val fragment = VeterinarianDetailsFragment()
+        val fragment = EmployeeDetailsFragment()
 
         val bundle = Bundle().apply {
             employee.id?.let { putLong("employeeId", it) } // Передаем только ID

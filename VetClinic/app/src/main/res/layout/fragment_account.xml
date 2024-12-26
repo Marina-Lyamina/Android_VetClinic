@@ -35,7 +35,6 @@
                 android:id="@+id/textViewFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="фио"
                 android:textSize="16sp"
                 android:layout_marginBottom="12dp" />
 
@@ -51,8 +50,7 @@
                 android:id="@+id/textViewBirthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="birthday"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginBottom="12dp" />
 
             <TextView
@@ -67,8 +65,7 @@
                 android:id="@+id/textViewPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="phone"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginBottom="12dp" />
 
             <TextView
@@ -83,8 +80,7 @@
                 android:id="@+id/textViewEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="email"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginBottom="12dp" />
 
             <Button
@@ -99,6 +95,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/update_account"/>
+
+            <Button
+                android:id="@+id/buttonLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/logout"
+                android:layout_marginTop="16dp"/>
+
 
         </LinearLayout>
     </ScrollView>

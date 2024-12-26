@@ -1,16 +1,23 @@
 package ru.marinalyamina.vetclinic.fragments
 
+import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.api.ApiService
 import ru.marinalyamina.vetclinic.api.RetrofitClient
+import ru.marinalyamina.vetclinic.models.dtos.CreateAnimalDTO
 import ru.marinalyamina.vetclinic.models.entities.Animal
 import ru.marinalyamina.vetclinic.models.entities.AnimalType
 import ru.marinalyamina.vetclinic.models.enums.AnimalGender
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
 
 class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
 
@@ -24,6 +31,7 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService::class.java)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,18 +39,18 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
 
         val editTextName: EditText = view.findViewById(R.id.editTextName)
         val editTextBirthDate: EditText = view.findViewById(R.id.editTextBirthDate)
-        val spinnerAnimalType: Spinner = view.findViewById(R.id.spinnerAnimalType)
         val radioGroupGender: RadioGroup = view.findViewById(R.id.radioGroupGender)
         val editTextBreed: EditText = view.findViewById(R.id.editTextBreed)
+
         val buttonSave: Button = view.findViewById(R.id.buttonSave)
         val buttonCancel: Button = view.findViewById(R.id.buttonCancel)
 
         animalId?.let { id ->
-            loadAnimalDetails(id, editTextName, editTextBirthDate, spinnerAnimalType, radioGroupGender, editTextBreed)
+            loadAnimalDetails(id, editTextName, editTextBirthDate, radioGroupGender, editTextBreed)
         }
 
         buttonSave.setOnClickListener {
-            val updatedAnimal = collectAnimalData(editTextName, editTextBirthDate, spinnerAnimalType, radioGroupGender, editTextBreed)
+            val updatedAnimal = collectAnimalData(editTextName, editTextBirthDate, radioGroupGender, editTextBreed)
             animalId?.let { id ->
                 saveAnimalData(id, updatedAnimal)
             }
@@ -51,13 +59,31 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
         buttonCancel.setOnClickListener {
             requireActivity().onBackPressed()
         }
+
+        editTextBirthDate.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                requireActivity(),
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val localDate = LocalDate.of(selectedYear, selectedMonth + 1, selectedDay)
+                    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                    val formattedDate = localDate.format(formatter)
+                    editTextBirthDate.setText(formattedDate)
+                },
+                year, month, day
+            )
+            datePickerDialog.show()
+        }
     }
 
     private fun loadAnimalDetails(
         id: Long,
         editTextName: EditText,
         editTextBirthDate: EditText,
-        spinnerAnimalType: Spinner,
         radioGroupGender: RadioGroup,
         editTextBreed: EditText
     ) {
@@ -71,7 +97,7 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
                         val genderId = when (animal.gender) {
                             AnimalGender.Male -> R.id.radioMale
                             AnimalGender.Female -> R.id.radioFemale
-                            else -> R.id.radioAnother
+                            else -> R.id.radioOther
                         }
                         radioGroupGender.check(genderId)
 
@@ -89,13 +115,11 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
     private fun collectAnimalData(
         editTextName: EditText,
         editTextBirthDate: EditText,
-        spinnerAnimalType: Spinner,
         radioGroupGender: RadioGroup,
         editTextBreed: EditText
-    ): Animal {
+    ): CreateAnimalDTO {
         val name = editTextName.text.toString()
         val birthDate = editTextBirthDate.text.toString()
-        val animalType = spinnerAnimalType.selectedItem as AnimalType
         val gender = when (radioGroupGender.checkedRadioButtonId) {
             R.id.radioMale -> AnimalGender.Male
             R.id.radioFemale -> AnimalGender.Female
@@ -103,20 +127,19 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
         }
         val breed = editTextBreed.text.toString()
 
-        return Animal(
-            id = animalId,
+        return CreateAnimalDTO(
             name = name,
             birthday = birthDate,
-            animalType = animalType,
             gender = gender,
-            breed = breed
+            breed = breed,
+            animalTypeId = null
         )
     }
 
 
-    private fun saveAnimalData(id: Long, updatedAnimal: Animal) {
-        /*apiService.updateAnimal(id, updatedAnimal).enqueue(object : retrofit2.Callback<Void> {
-            override fun onResponse(call: retrofit2.Call<Void>, response: retrofit2.Response<Void>) {
+    private fun saveAnimalData(id: Long, updatedAnimal: CreateAnimalDTO) {
+        apiService.updateAnimal(id, updatedAnimal).enqueue(object : retrofit2.Callback<Animal> {
+            override fun onResponse(call: retrofit2.Call<Animal>, response: retrofit2.Response<Animal>) {
                 if (response.isSuccessful) {
                     Toast.makeText(requireContext(), "Животное обновлено", Toast.LENGTH_SHORT).show()
                     requireActivity().onBackPressed()
@@ -125,10 +148,10 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<Void>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<Animal>, t: Throwable) {
                 Toast.makeText(requireContext(), "Ошибка подключения", Toast.LENGTH_SHORT).show()
             }
-        })*/
+        })
     }
 
     private fun updateToolbarTitle(title: String) {
@@ -153,5 +176,6 @@ class AnimalUpdateFragment : Fragment(R.layout.fragment_animal_update) {
             }
         })
     }
+
 
 }

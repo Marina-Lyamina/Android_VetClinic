@@ -4,14 +4,20 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import ru.marinalyamina.vetclinic.models.dtos.CreateAnimalScheduleDTO;
+import ru.marinalyamina.vetclinic.models.dtos.CreateFileDTO;
 import ru.marinalyamina.vetclinic.models.dtos.LoginDTO;
 import ru.marinalyamina.vetclinic.models.dtos.ScheduleDTO;
+import ru.marinalyamina.vetclinic.models.dtos.UpdateUserDTO;
 import ru.marinalyamina.vetclinic.models.entities.Animal;
 import ru.marinalyamina.vetclinic.models.entities.AnimalType;
+import ru.marinalyamina.vetclinic.models.dtos.CreateAnimalDTO;
+import ru.marinalyamina.vetclinic.models.entities.Appointment;
 import ru.marinalyamina.vetclinic.models.entities.Client;
 import ru.marinalyamina.vetclinic.models.entities.Employee;
 import ru.marinalyamina.vetclinic.models.entities.Procedure;
@@ -36,8 +42,8 @@ public interface ApiService {
     Call<Animal> getAnimalById(@Path("id") Long id);
 
     //создание животного
-    @POST("/api/animals/{id}")
-    Call<Animal> updateAnimal(@Path("id") Long id, @Body Animal animal);
+    @PUT("/api/animals/{id}")
+    Call<Animal> updateAnimal(@Path("id") Long id, @Body CreateAnimalDTO createAnimalDTO);
 
     // список врачей
     @GET("/api/employees")
@@ -62,5 +68,25 @@ public interface ApiService {
 
     @POST("/api/schedules/animals")
     Call<Long> createAnimalSchedule(@Body CreateAnimalScheduleDTO animalScheduleDTO);
+
+    //создание питомца
+    @POST("/api/animals")
+    Call<Animal> createAnimal(@Body CreateAnimalDTO animalDTO);
+
+    //получение клиента
+    @GET("/api/clients/currentUser")
+    Call<Client> getCurrentUser();
+
+    @DELETE("/api/animals/{id}")
+    Call<Void> deleteAnimal(@Path("id") Long id);
+
+    @PUT("/api/animals/{id}/image")
+    Call<Void> updateAnimalMainImage(@Path("id") Long id, @Body CreateFileDTO fileDTO);
+
+    @PUT("/api/clients/currentUser")
+    Call<Client> updateCurrentUser(@Body UpdateUserDTO userDTO);
+
+    @GET("/api/appointments/{id}")
+    Call<Appointment> getAppointmentById(@Path("id") Long id);
 
 }

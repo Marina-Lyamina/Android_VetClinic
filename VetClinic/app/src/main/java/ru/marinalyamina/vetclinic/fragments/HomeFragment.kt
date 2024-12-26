@@ -1,10 +1,10 @@
 package ru.marinalyamina.vetclinic.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -17,7 +17,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import ru.marinalyamina.vetclinic.api.RetrofitClient
-import ru.marinalyamina.vetclinic.databinding.FragmentHomeBinding
 import ru.marinalyamina.vetclinic.models.entities.Animal
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -48,10 +47,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val call = apiService.getAnimalsWithFutureAppointments()
 
             call.enqueue(object : Callback<List<Animal>> {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(call: Call<List<Animal>>, response: Response<List<Animal>>) {
                     if (response.isSuccessful && response.body() != null) {
                         animalList.clear()
                         animalList.addAll(response.body()!!)
+
+                        if (animalList.isEmpty()) {
+                            view?.findViewById<TextView>(R.id.emptyMessage)?.visibility = View.VISIBLE
+                        } else {
+                            view?.findViewById<TextView>(R.id.emptyMessage)?.visibility = View.GONE
+                        }
+
                         adapter.notifyDataSetChanged()
                     } else {
                         Log.e("HomeFragment", "Ошибка: ${response.code()}")
@@ -59,7 +66,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
 
                 override fun onFailure(call: Call<List<Animal>>, t: Throwable) {
-                    // Проверка isAdded перед доступом к контексту
                     if (isAdded) {
                         Log.e("HomeFragment", "Ошибка: ${t.message}")
                         Toast.makeText(requireContext(), "Ошибка подключения", Toast.LENGTH_SHORT).show()
@@ -70,6 +76,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             Log.e("HomeFragment", "Exception: ${e.message}")
         }
     }
+
 
     private fun navigateToAnimalDetails(animal: Animal) {
         val fragment = AnimalDetailsFragment()

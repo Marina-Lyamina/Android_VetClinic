@@ -1,7 +1,5 @@
 package ru.marinalyamina.vetclinic.activities
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,11 +8,9 @@ import ru.marinalyamina.vetclinic.R
 import ru.marinalyamina.vetclinic.databinding.ActivityMainBinding
 import ru.marinalyamina.vetclinic.fragments.AccountFragment
 import androidx.core.content.ContextCompat
-import ru.marinalyamina.vetclinic.fragments.AnimalDetailsFragment
 import ru.marinalyamina.vetclinic.fragments.HomeFragment
 import ru.marinalyamina.vetclinic.fragments.ProceduresFragment
-import ru.marinalyamina.vetclinic.fragments.VeterinariansFragment
-import ru.marinalyamina.vetclinic.models.entities.Animal
+import ru.marinalyamina.vetclinic.fragments.EmployeesFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -65,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.veterinarians -> {
                     updateToolbarTitle(R.string.title_veterinarians)
-                    VeterinariansFragment()
+                    EmployeesFragment()
                 }
                 R.id.procedures -> {
                     updateToolbarTitle(R.string.title_procedures)
